@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<User> show(@PathVariable Integer id){
+    public ResponseEntity<User> show(@PathVariable Long id){
         return new ResponseEntity<>(service.show(id), HttpStatus.OK);
     }
 
@@ -31,12 +31,12 @@ public class UserController {
     }
 
     @PutMapping("/user/{id}")
-    public ResponseEntity<User> update(@PathVariable Integer id, @RequestBody User user){
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user){
         return new ResponseEntity<>(service.update(id, user), HttpStatus.OK);
     }
 
     @DeleteMapping("/user/{id}")
-    public ResponseEntity<User> destroy(@PathVariable Integer id){
+    public ResponseEntity<User> destroy(@PathVariable Long id){
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 }
