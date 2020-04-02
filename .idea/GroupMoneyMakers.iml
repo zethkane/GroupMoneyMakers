@@ -8,7 +8,6 @@
         <datasource-mapping>
           <factory-entry name="Entities" />
         </datasource-mapping>
-        <datasource-mapping />
         <naming-strategy-map />
       </configuration>
     </facet>
