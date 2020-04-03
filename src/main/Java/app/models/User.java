@@ -1,9 +1,7 @@
-package models;
+package app.models;
 
-import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity

@@ -1,11 +1,11 @@
-package models;
+package app.models;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("savings")
-public class Saving extends Account{
+public class Saving extends app.models.Account {
 
     private double rate;
 

@@ -1,11 +1,11 @@
-package models;
+package app.models;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("checking")
-public class Checking extends Account{
+public class Checking extends app.models.Account {
 
     private final int MAX_NUM_OF_MONTHLY_WITHDRAWS = 3;
     private int numOfWithdraws;
