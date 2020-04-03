@@ -1,23 +1,31 @@
 package app.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
     private String name;
+    @NotNull
     private String password;
 
     @OneToMany
     private Set<Account> accounts;
 
-    public User(){
+    public User(){}
+
+    public User(String name, String password){
+        this.name = name;
+        this.password = password;
         accounts = new HashSet<>();
     }
 

@@ -16,11 +16,30 @@ public abstract class Account {
     private Double balance;
     private Boolean isActive;
 
+    @OneToOne
+    private User user;
+
 
 
     public Account(){
         this.balance = 0.0;
         this.isActive = true;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getAccountId() {

@@ -1,14 +1,16 @@
 package app.controllers;
 
 import app.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import app.service.UserService;
 
-@RestController
+@Controller
 public class UserController {
-
+    @Autowired
     private UserService service;
 
     public UserController(UserService service) {
@@ -28,7 +30,7 @@ public class UserController {
     public ResponseEntity<User> create( @RequestBody User user) {
         return new ResponseEntity<>(service.create(user), HttpStatus.CREATED);
     }
-    @PutMapping("/users")
+    @PutMapping("/users/{id}")
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
         return new ResponseEntity<>(service.update(id, user), HttpStatus.OK);
     }

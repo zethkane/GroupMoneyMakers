@@ -1,12 +1,14 @@
 package app.service;
 
 import app.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import app.repositories.UserRepository;
 
 @Service
 public class UserService {
 
+    @Autowired
    private UserRepository userRepository;
 
     public UserService(UserRepository repository) {
@@ -31,6 +33,8 @@ public class UserService {
         originalUser.setPassword(newUser.getPassword());
         return userRepository.save(originalUser);
     }
+
+
 
     public Boolean delete(Long id) {
         userRepository.deleteById(id);
