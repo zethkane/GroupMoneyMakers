@@ -6,8 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import service.UserService;
 
-@Controller
+@RestController
 public class UserController {
 
     private UserService service;
@@ -17,26 +18,26 @@ public class UserController {
 
     @PostMapping("/user")
     public ResponseEntity<User> create(@RequestBody User user){
-        return new ResponseEntity<>(service.create(account), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.create(user), HttpStatus.CREATED);
     }
 
     @GetMapping("/user/{id}")
     public ResponseEntity<User> show(@PathVariable Long id){
-        return new ResponseEntity<>(service.show(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.findbyId(id), HttpStatus.OK);
     }
 
-    @GetMapping("/user")
-    public ResponseEntity<User> showAll(@RequestBody User user){
-        return new ResponseEntity<>(service.showAll(user), HttpStatus.OK);
-    }
+//    @GetMapping("/all")
+//    public ResponseEntity<User> showAll(@RequestBody User user){
+//        return new ResponseEntity<>(service.findAll(user), HttpStatus.OK);
+//    }
 
     @PutMapping("/user/{id}")
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user){
-        return new ResponseEntity<>(service.update(id, user), HttpStatus.OK);
+        return new ResponseEntity<>(service.update(user, id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/user/{id}")
-    public ResponseEntity<User> destroy(@PathVariable Long id){
-        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
-    }
+//    @DeleteMapping("/user/{id}")
+//    public ResponseEntity<User> destroy(@PathVariable Long id){
+//        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
+//    }
 }
