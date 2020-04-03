@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import service.UserService;
 
+import java.util.Optional;
+
 @RestController
 public class UserController {
 
@@ -22,8 +24,8 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<User> show(@PathVariable Long id){
-        return new ResponseEntity<>(service.findbyId(id), HttpStatus.OK);
+    public ResponseEntity<Optional> show(@PathVariable Long id){
+        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
 //    @GetMapping("/all")
