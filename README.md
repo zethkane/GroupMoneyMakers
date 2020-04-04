@@ -4,12 +4,12 @@
 Money Management Application
 User Stories to Fulfill
 
-As a client, (not logged in) I
+As a client, (not logged in) I can 
 
-can create new accounts
+-create new accounts
 
-deposit money to each account
+-deposit money to each account
 
-withdraw money from each account
+-withdraw money from each account
 
-transfer money to and from any 2 accounts
+-transfer money to and from any 2 accounts
