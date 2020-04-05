@@ -24,7 +24,6 @@ import java.util.Set;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = Run.class)
 public class UserControllerTest {
    @MockBean
    UserService userService;
