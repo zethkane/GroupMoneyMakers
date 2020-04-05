@@ -37,4 +37,15 @@ public class AccountController {
     public ResponseEntity<Boolean> destroy(Long id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
+
+    @PostMapping("accounts/deposit/{id}/{amount}")
+    public ResponseEntity<Double> deposit(@RequestParam Long id,@RequestParam Double amount){
+        return new ResponseEntity<>(service.deposit(id,amount),HttpStatus.OK);
+    }
+
+    @PostMapping("accounts/withdraw/{id}/{amount}")
+    public ResponseEntity<Double> withdraw(@RequestParam Long id,@RequestParam Double amount){
+        return new ResponseEntity<>(service.withdraw(id,amount),HttpStatus.OK);
+    }
+
 }

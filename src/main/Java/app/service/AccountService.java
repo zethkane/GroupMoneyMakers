@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import app.repositories.AccountRepository;
 
+import java.util.Optional;
+
 
 @Service
 public class AccountService {
@@ -24,17 +26,37 @@ public class AccountService {
     }
 
     public Account create(Account account) {
+
         return repository.save(account);
     }
 
-    public Account update(Long id, Account newMuffinData) {
+    public Account update(Long id, Account account) {
         Account originalAccount = repository.findById(id).get();
-        originalAccount.setIsActive(newMuffinData.getIsActive());
-        return repository.save(originalAccount);
+        originalAccount.setIsActive(account.getIsActive());
+         repository.save(originalAccount);
+        return originalAccount;
     }
 
     public Boolean delete(Long id) {
         repository.deleteById(id);
         return true;
+    }
+    public Double deposit(Long id, Double depositAmount){
+
+        Account account=repository.findById(id).get();
+
+
+        Double balance = account.getBalance();
+        balance+= depositAmount;
+        return balance;
+
+    }
+
+    public Double withdraw(Long id, Double withdrawAmount){
+        Account account=repository.findById(id).get();
+        Double balance = account.getBalance();
+        balance+= withdrawAmount;
+        return balance;
+
     }
 }
