@@ -19,23 +19,23 @@ public class UserController {
 
     @GetMapping("/users")
     public ResponseEntity<Iterable<User>> index() {
-        return new ResponseEntity<>(service.index(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAllUsers(), HttpStatus.OK);
     }
 
     @GetMapping("/users/{id}")
     public ResponseEntity<User> show(@PathVariable Long id) {
-        return new ResponseEntity<>(service.show(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.findUserById(id), HttpStatus.OK);
     }
     @PostMapping("/users")
     public ResponseEntity<User> create( @RequestBody User user) {
-        return new ResponseEntity<>(service.create(user), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.createUser(user), HttpStatus.CREATED);
     }
     @PutMapping("/users/{id}")
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
-        return new ResponseEntity<>(service.update(id, user), HttpStatus.OK);
+        return new ResponseEntity<>(service.updateUser(id, user), HttpStatus.OK);
     }
     @DeleteMapping("/users")
     public ResponseEntity<Boolean> destroy(Long id) {
-        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.deleteUser(id), HttpStatus.OK);
     }
 }

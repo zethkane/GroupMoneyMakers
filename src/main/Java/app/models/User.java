@@ -2,7 +2,9 @@ package app.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,7 +13,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long userId;
 
     @NotNull
     private String name;
@@ -19,22 +21,22 @@ public class User {
     private String password;
 
     @OneToMany
-    private Set<Account> accounts;
+    private List<Account> accounts;
 
     public User(){}
 
     public User(String name, String password){
         this.name = name;
         this.password = password;
-        accounts = new HashSet<>();
+        accounts = new ArrayList<>();
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long id) {
+        this.userId = id;
     }
 
     public String getName() {
@@ -53,11 +55,11 @@ public class User {
         this.password = password;
     }
 
-    public Set<Account> getAccounts() {
+    public List<Account> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(Set<Account> accounts) {
+    public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }
 }

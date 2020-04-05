@@ -11,20 +11,26 @@ discriminatorType=DiscriminatorType.STRING)
 public abstract class Account {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long accountId;
+
     private Double balance;
     private Boolean isActive;
 
-    @OneToOne
+
+    @ManyToOne
+    @JoinColumn(name = "userID")
     private User user;
 
 
 
     public Account(){
+
         this.balance = 0.0;
         this.isActive = true;
     }
+
+
 
     public Boolean getActive() {
         return isActive;

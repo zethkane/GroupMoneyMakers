@@ -19,22 +19,22 @@ public class AccountController {
 
     @GetMapping("/accounts")
     public ResponseEntity<Iterable<Account>> index() {
-        return new ResponseEntity<>(service.index(), HttpStatus.OK);
+        return new ResponseEntity<>(service.getAllAccounts(), HttpStatus.OK);
     }
     @GetMapping("/accounts/{id}")
     public ResponseEntity<Account> show(@PathVariable Long id) {
-        return new ResponseEntity<>(service.show(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAccountById(id), HttpStatus.OK);
     }
     @PostMapping("/accounts")
     public ResponseEntity<Account> create(@RequestBody Account account) {
-        return new ResponseEntity<>(service.create(account), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.createAccount(account), HttpStatus.CREATED);
     }
     @PutMapping("/accounts")
     public ResponseEntity<Account> update(@PathVariable Long id, @RequestBody Account account) {
-        return new ResponseEntity<>(service.update(id, account), HttpStatus.OK);
+        return new ResponseEntity<>(service.updateAccount(id, account), HttpStatus.OK);
     }
     @DeleteMapping("/accounts")
     public ResponseEntity<Boolean> destroy(Long id) {
-        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.deleteAccount(id), HttpStatus.OK);
     }
 }

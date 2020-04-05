@@ -10,31 +10,31 @@ import app.repositories.AccountRepository;
 public class AccountService {
 
     @Autowired
-    private AccountRepository repository;
-    public AccountService(AccountRepository repository) {
-        this.repository = repository;
+    private AccountRepository accountRepository;
+    public AccountService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
     }
 
-    public Iterable<Account> index() {
-        return repository.findAll();
+    public Iterable<Account> getAllAccounts() {
+        return accountRepository.findAll();
+    }
+//change to searching by type
+    public Account findAccountById(Long accountId) {
+        return accountRepository.findById(accountId).get();
     }
 
-    public Account show(Long id) {
-        return repository.findById(id).get();
+    public Account createAccount(Account account) {
+        return accountRepository.save(account);
     }
 
-    public Account create(Account account) {
-        return repository.save(account);
+    public Account updateAccount(Long accountId, Account account) {
+        Account originalAccount = accountRepository.findById(accountId).get();
+        originalAccount.setIsActive(account.getIsActive());
+        return accountRepository.save(originalAccount);
     }
 
-    public Account update(Long id, Account newMuffinData) {
-        Account originalAccount = repository.findById(id).get();
-        originalAccount.setIsActive(newMuffinData.getIsActive());
-        return repository.save(originalAccount);
-    }
-
-    public Boolean delete(Long id) {
-        repository.deleteById(id);
+    public Boolean deleteAccount(Long accountId) {
+        accountRepository.deleteById(accountId);
         return true;
     }
 }

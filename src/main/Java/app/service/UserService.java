@@ -9,26 +9,26 @@ import app.repositories.UserRepository;
 public class UserService {
 
     @Autowired
-   private UserRepository userRepository;
+    private UserRepository userRepository;
 
     public UserService(UserRepository repository) {
         this.userRepository = repository;
     }
 
-    public Iterable<User> index() {
+    public Iterable<User> findAllUsers() {
         return userRepository.findAll();
     }
 
-    public User show(Long id) {
-        return userRepository.findById(id).get();
+    public User findUserById(Long userId) {
+        return userRepository.findById(userId).get();
     }
 
-    public User create(User user) {
+    public User createUser(User user) {
         return userRepository.save(user);
     }
 
-    public User update(Long id, User newUser) {
-        User originalUser = userRepository.findById(id).get();
+    public User updateUser(Long userId, User newUser) {
+        User originalUser = userRepository.findById(userId).get();
         originalUser.setName(newUser.getName());
         originalUser.setPassword(newUser.getPassword());
         return userRepository.save(originalUser);
@@ -36,8 +36,8 @@ public class UserService {
 
 
 
-    public Boolean delete(Long id) {
-        userRepository.deleteById(id);
+    public Boolean deleteUser(Long userId) {
+        userRepository.deleteById(userId);
         return true;
     }
 
