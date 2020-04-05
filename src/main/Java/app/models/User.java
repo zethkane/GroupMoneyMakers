@@ -18,15 +18,20 @@ public class User {
     @NotNull
     private String password;
 
-    @OneToMany
-    private Set<Account> accounts;
+    @OneToMany (cascade = CascadeType.ALL)
+    private Set<Checking> savingAccounts;
+
+    @OneToMany (cascade = CascadeType.ALL)
+    private Set<Saving> checkingAccounts;
 
     public User(){}
 
     public User(String name, String password){
         this.name = name;
         this.password = password;
-        accounts = new HashSet<>();
+        checkingAccounts = new HashSet<>();
+
+
     }
 
     public Long getId() {
@@ -53,11 +58,20 @@ public class User {
         this.password = password;
     }
 
-    public Set<Account> getAccounts() {
-        return accounts;
+
+    public Set<Checking> getSavingAccounts() {
+        return savingAccounts;
     }
 
-    public void setAccounts(Set<Account> accounts) {
-        this.accounts = accounts;
+    public void setSavingAccounts(Set<Checking> savingAccounts) {
+        this.savingAccounts = savingAccounts;
+    }
+
+    public Set<Saving> getCheckingAccounts() {
+        return checkingAccounts;
+    }
+
+    public void setCheckingAccounts(Set<Saving> checkingAccounts) {
+        this.checkingAccounts = checkingAccounts;
     }
 }

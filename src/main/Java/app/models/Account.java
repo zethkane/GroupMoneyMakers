@@ -1,13 +1,8 @@
 package app.models;
 
 import javax.persistence.*;
-
 @Entity
-@Inheritance(strategy= InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="accounts",
-discriminatorType=DiscriminatorType.STRING)
-@DiscriminatorValue("account")
-@Table(name="accounts")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Account {
 
     @Id
@@ -24,7 +19,10 @@ public abstract class Account {
     public Account(){
         this.balance = 0.0;
         this.isActive = true;
+
     }
+
+
 
     public Boolean getActive() {
         return isActive;

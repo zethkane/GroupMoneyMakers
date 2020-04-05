@@ -42,12 +42,11 @@ public class AccountService {
         return true;
     }
     public Double deposit(Long id, Double depositAmount){
-
         Account account=repository.findById(id).get();
-
-
         Double balance = account.getBalance();
         balance+= depositAmount;
+        account.setBalance(balance);
+        repository.save(account);
         return balance;
 
     }
@@ -55,8 +54,12 @@ public class AccountService {
     public Double withdraw(Long id, Double withdrawAmount){
         Account account=repository.findById(id).get();
         Double balance = account.getBalance();
-        balance+= withdrawAmount;
+        balance-= withdrawAmount;
+        account.setBalance(balance);
+        repository.save(account);
         return balance;
 
     }
+
+
 }

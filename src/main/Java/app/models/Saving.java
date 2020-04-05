@@ -2,10 +2,11 @@ package app.models;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 @Entity
-@DiscriminatorValue("savings")
-public class Saving extends app.models.Account {
+@DiscriminatorValue("saving")
+public class Saving extends Account implements Serializable {
 
     private double rate;
     private String name;
