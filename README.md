@@ -4,7 +4,7 @@
 Money Management Application
 User Stories to Fulfill
 
-As a client, (not logged in) I can 
+As a client |
 
 -create new accounts
 
