@@ -60,6 +60,16 @@ public class AccountService {
         return balance;
 
     }
+    public  Double transfer(Long accountIdFrom, Long accountIdTo,Double amount){
+        Account accountFrom =repository.findById(accountIdFrom).get();
+        Account accountTo=repository.findById(accountIdTo).get();
+        Double accountFromBalance=withdraw(accountIdFrom,amount);
+        Double acountToBalance=deposit(accountIdTo,amount);
+        return accountFromBalance;
+
+    }
+
+
 
 
 }

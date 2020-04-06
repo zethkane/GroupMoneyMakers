@@ -48,4 +48,9 @@ public class AccountController {
         return new ResponseEntity<>(service.withdraw(id,amount),HttpStatus.OK);
     }
 
+    @PostMapping("accounts/transfer/{accountFromId}/{accountToId}/{amount}")
+    public ResponseEntity<Double> transer(@RequestParam Long accountFromId, @RequestParam Long accountToId ,@RequestParam Double amount){
+        return new ResponseEntity<>(service.transfer(accountFromId,accountToId,amount),HttpStatus.OK);
+    }
+
 }
