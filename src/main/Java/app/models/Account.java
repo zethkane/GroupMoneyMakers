@@ -3,17 +3,13 @@ package app.models;
 import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Account {
+public class Account {
 
     @Id
     @GeneratedValue
     private Long accountId;
     private Double balance;
     private Boolean isActive;
-
-    @OneToOne
-    private User user;
-
 
 
     public Account(){
@@ -32,13 +28,6 @@ public abstract class Account {
         isActive = active;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public Long getAccountId() {
         return accountId;

@@ -8,49 +8,38 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import app.service.AccountService;
 
+import java.util.List;
+
 @Controller
 public class AccountController {
     @Autowired
-    private AccountService service;
+    private AccountService accountService;
 
-    public AccountController(AccountService service) {
-        this.service = service;
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
     }
 
     @GetMapping("/accounts")
-    public ResponseEntity<Iterable<Account>> index() {
-        return new ResponseEntity<>(service.index(), HttpStatus.OK);
+    public ResponseEntity<List<Account>> getAllAccounts() {
+        return new ResponseEntity<>(accountService.findAllAccounts(), HttpStatus.OK);
     }
-    @GetMapping("/accounts/{id}")
-    public ResponseEntity<Account> show(@PathVariable Long id) {
-        return new ResponseEntity<>(service.show(id), HttpStatus.OK);
+    @GetMapping("/accounts/{accountId}")
+    public ResponseEntity<Account> getAccountById(@PathVariable Long accountId) {
+        return new ResponseEntity<>(accountService.findAccountById(accountId), HttpStatus.OK);
     }
     @PostMapping("/accounts")
-    public ResponseEntity<Account> create(@RequestBody Account account) {
-        return new ResponseEntity<>(service.create(account), HttpStatus.CREATED);
+    public ResponseEntity<Account> postCreateAccount(@RequestBody Account account) {
+        return new ResponseEntity<>(accountService.createAccount(account), HttpStatus.CREATED);
     }
-    @PutMapping("/accounts")
-    public ResponseEntity<Account> update(@PathVariable Long id, @RequestBody Account account) {
-        return new ResponseEntity<>(service.update(id, account), HttpStatus.OK);
+    @PutMapping("/accounts/{accountId}")
+    public ResponseEntity<Account> putUpdateAccount(@PathVariable Long accountId, @RequestBody Account account) {
+        return new ResponseEntity<>(accountService.updateAccount(accountId, account), HttpStatus.OK);
     }
-    @DeleteMapping("/accounts")
-    public ResponseEntity<Boolean> destroy(Long id) {
-        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
-    }
-
-    @PostMapping("accounts/deposit/{id}/{amount}")
-    public ResponseEntity<Double> deposit(@RequestParam Long id,@RequestParam Double amount){
-        return new ResponseEntity<>(service.deposit(id,amount),HttpStatus.OK);
+    @DeleteMapping("/accounts/{accountId}")
+    public ResponseEntity<Boolean> destroy(@PathVariable Long accountId) {
+        return new ResponseEntity<>(accountService.deleteAccount(accountId), HttpStatus.OK);
     }
 
-    @PostMapping("accounts/withdraw/{id}/{amount}")
-    public ResponseEntity<Double> withdraw(@RequestParam Long id,@RequestParam Double amount){
-        return new ResponseEntity<>(service.withdraw(id,amount),HttpStatus.OK);
-    }
 
-    @PostMapping("accounts/transfer/{accountFromId}/{accountToId}/{amount}")
-    public ResponseEntity<Double> transer(@RequestParam Long accountFromId, @RequestParam Long accountToId ,@RequestParam Double amount){
-        return new ResponseEntity<>(service.transfer(accountFromId,accountToId,amount),HttpStatus.OK);
-    }
 
 }
