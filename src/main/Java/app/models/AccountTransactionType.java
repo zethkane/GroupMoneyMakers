@@ -1,6 +1,6 @@
 package app.models;
 
-public enum AccountTransactionType {
+public enum  AccountTransactionType {
     WITHDRAWAL,
     DEPOSIT
 }

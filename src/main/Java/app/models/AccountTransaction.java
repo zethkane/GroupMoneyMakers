@@ -15,13 +15,15 @@ public class AccountTransaction {
     private AccountTransactionType type;
     private double amount;
     private Date date;
+    private Double transactionBalance;
 
     protected AccountTransaction() {}
 
-    public AccountTransaction(AccountTransactionType type, double amount, Date date) {
+    public AccountTransaction(AccountTransactionType type, double amount) {
         this.type = type;
         this.amount = amount;
-        this.date = date;
+        this.date = new Date();
+        this.transactionBalance = 0.0;
     }
 
     public Long getTransactionId() {
@@ -54,5 +56,24 @@ public class AccountTransaction {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Double getTransactionBalance() {
+        return transactionBalance;
+    }
+
+    public void setTransactionBalance(Double transactionBalance) {
+        this.transactionBalance = transactionBalance;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountTransaction{" +
+                "transactionId=" + transactionId +
+                ", type=" + type +
+                ", amount=" + amount +
+                ", date=" + date +
+                ", transactionBalance=" + transactionBalance +
+                '}';
     }
 }
