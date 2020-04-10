@@ -1,0 +1,18 @@
+<h2>Account Details</h2>
+
+<hr/>
+<div *ngIf="account">
+  <div>
+    <label><b>Account ID: </b></label> {{account.accountId}}
+  </div>
+  <div>
+    <label><b>Account balance: </b></label> {{account.balance}}
+  </div>
+  <div>
+    <label><b>Account Status: </b></label> {{account.isActive}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Account List</button><br>
