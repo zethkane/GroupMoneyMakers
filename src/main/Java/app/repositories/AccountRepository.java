@@ -1,9 +1,15 @@
 package app.repositories;
 
+
 import app.models.Account;
+import org.hibernate.context.spi.AbstractCurrentSessionContext;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AccountRepository extends JpaRepository<Account, Long> {
+import java.util.List;
 
+public interface AccountRepository extends JpaRepository<Account, Long> {
+    List<Account> findByStatus(Boolean status);
+    List<Account> findByNicknameContaining(String nickname);
 }
+
 

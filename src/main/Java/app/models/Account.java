@@ -1,57 +1,73 @@
 package app.models;
 
 import javax.persistence.*;
+
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "accounts")
 public class Account {
 
     @Id
-    @GeneratedValue
-    private Long accountId;
-    private Double balance;
-    private Boolean isActive;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
+    @Column(name = "nickname")
+    private String nickname;
 
-    public Account(){
-        this.balance = 0.0;
-        this.isActive = true;
+    @Column(name = "balance")
+    private String balance;
+
+    @Column(name = "status")
+    private Boolean status;
+
+    public Account() {
 
     }
 
-
-
-    public Boolean getActive() {
-        return isActive;
+    public Account(String nickname, String balance, Boolean status){
+        this.nickname = nickname;
+        this.balance = balance;
+        this.status = status;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public long getId() {
+        return id;
     }
 
-
-    public Long getAccountId() {
-        return accountId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public String getNickname() {
+        return nickname;
     }
 
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
-
-    public Double getBalance() {
+    public String getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
+    public void setBalance(String balance) {
         this.balance = balance;
     }
 
-    public Boolean getIsActive() {
-        return isActive;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", nickname='" + nickname + '\'' +
+                ", balance='" + balance + '\'' +
+                ", status=" + status +
+                '}';
     }
 }
